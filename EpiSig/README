@@ -1,6 +1,7 @@
 Quick Instruction for EpiSig
 
-Assume the working directory as $WORK_DIR. Compilation has been successfully tested on CentOS6/CentOS7 and Ubuntu 16
+Assume the working directory is $WORK_DIR.
+Compilation has been successfully tested on CentOS6/CentOS7 and Ubuntu 16
 
 1. Build multi-threading version:
 Requirement: gcc/g++ and pthread
@@ -21,17 +22,21 @@ cp pre_EpiSig EpiSig_v1.0.MPI filter_ad $WORK_DIR
 
 Note that MPI version of EpiSig is still in beta status.
 
-3. Running EpiSig:
-EpiSig package contains three programs: EpiSig_v1.0, pre_EpiSig, and filter_ad.
-  i. Run pre_EpiSig to pre-process data for EpiSig_v1.0.
- ii. Run EpiSig_v1.0 to get chromosome signature from the data.
-iii. "filter_ad" is internally used by EpiSig_v1.0.
- iv. "test_EpiSig" is the test data set for EpiSig. After copying the three executables into the directory, run the "bash test.bash" for the test. The output consists of two data files: EpiSig and EpiSig.clusters; two log files: "log.pre_EpiSig" and "log.EpiSig".
-  v. Format of EpiSig.clusters: four columns, chromosome, position, strand orientation(+/-), cluster number. The chromosome position in "EpiSig.clusters" is the center of the window.
- vi. Format of EpiSig. EpiSig provide the motif intensity for each cluster. The intensity is charactered by mean and standard deviation of each bin from each mark.
-
-4. pre_EpiSig input format:
+3. pre_EpiSig input format:
 pre_EpiSig now accepts three kinds of data format: WIG, BED, and BIN.
-  i. WIG: wiggle track format used in UCSC genome browser. 
- ii. BED: three column bed format, each row for a read in the alignment. For data in bam format, bamToBed from bedtools can convert the bam file into bed file. Do not use mergeBed or other programs to process the converted bed file before EpiSig input. 
-iii. BIN: pre-processed data. The read count on each position is calculated from the alignment.
+	a. WIG: wiggle track format used in UCSC genome browser. 
+	b. BED: three column bed format, each row for a read in the alignment. For data in bam format, bamToBed from bedtools can convert the bam file into bed file. Do not use mergeBed or other programs to process the converted bed file before EpiSig input. 
+	c. BIN: pre-processed data. The read count on each position is calculated from the alignment.
+
+4. Running EpiSig:
+The EpiSig package contains three programs: EpiSig_v1.0, pre_EpiSig, and filter_ad.
+	a. Run pre_EpiSig to pre-process data for EpiSig_v1.0.
+	b. Run EpiSig_v1.0 to get chromosome signature from the data.
+	c. "filter_ad" is internally used by EpiSig_v1.0.
+	d. "test_EpiSig" is the test data set for EpiSig. After copying the three executables into the directory, run the "bash test.bash" for the test. The output consists of two data files: EpiSig and EpiSig.clusters; two log files: "log.pre_EpiSig" and "log.EpiSig".
+
+5. Output files:
+	a. The cluster regions: default name "EpiSig.clusters": four columns, chromosome, position, strand orientation (+/-), cluster number.
+The chromosome position in "EpiSig.clusters" is the center of the window.
+	f. The cluster peak profiles: default name "EpiSig". EpiSig provides the profile intensity for each cluster. The intensity is characterized by mean and standard deviation for each bin from each mark.
+
