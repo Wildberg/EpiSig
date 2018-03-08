@@ -18,6 +18,7 @@ make clean_mpi
 make mpi
 cp pre_EpiSig EpiSig_v1.0.MPI filter_ad $WORK_DIR
 
+
 Note that MPI version of EpiSig is still in beta status.
 
 3. Running EpiSig:
